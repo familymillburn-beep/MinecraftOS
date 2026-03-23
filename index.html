@@ -1,29 +1,119 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WebDesk OS</title>
+  <title>NovaOS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="boot">Starting WebDesk OS...</div>
+<div id="lock-screen">
+  <div class="lock-center">
+    <div class="lock-time" id="lockTime"></div>
+    <div class="lock-date" id="lockDate"></div>
+    <div class="lock-user-card">
+      <div class="avatar">A</div>
+      <div class="user-name">Alicia</div>
+      <input id="password" type="password" placeholder="Enter PIN (1234)">
+      <button id="unlockBtn">Unlock</button>
+    </div>
+  </div>
+</div>
 
 <div id="desktop" class="hidden">
-  <div id="taskbar">
-    <div id="start" onclick="toggleStartMenu()">Start</div>
-    <div id="taskbar-apps"></div>
-    <div id="clock"></div>
+  <!-- Desktop wallpaper overlay -->
+  <div id="wallpaper"></div>
+
+  <!-- Desktop icons -->
+  <div id="desktop-icons">
+    <div class="desktop-icon" ondblclick="openApp('files')">
+      <div class="icon-img folder"></div>
+      <span>Files</span>
+    </div>
+    <div class="desktop-icon" ondblclick="openApp('notes')">
+      <div class="icon-img note"></div>
+      <span>Notes</span>
+    </div>
+    <div class="desktop-icon" ondblclick="openApp('browser')">
+      <div class="icon-img globe"></div>
+      <span>Browser</span>
+    </div>
+    <div class="desktop-icon" ondblclick="openApp('settings')">
+      <div class="icon-img gear"></div>
+      <span>Settings</span>
+    </div>
   </div>
 
-  <div id="start-menu" class="hidden">
-    <h3>WebDesk OS</h3>
-    <button onclick="openApp('notes')">Notes</button>
-    <button onclick="openApp('files')">File Manager</button>
-    <button onclick="openApp('terminal')">Terminal</button>
-    <button onclick="openApp('about')">About</button>
+  <!-- Widgets -->
+  <div id="widgets">
+    <div class="widget">
+      <div class="widget-title">Now</div>
+      <div class="widget-time" id="widgetTime"></div>
+      <div class="widget-sub" id="widgetDate"></div>
+    </div>
+    <div class="widget">
+      <div class="widget-title">Focus</div>
+      <div class="widget-sub">No upcoming tasks</div>
+    </div>
   </div>
 
+  <!-- Windows container -->
   <div id="windows"></div>
+
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <div id="start-button" onclick="toggleStartMenu()">
+      <span class="start-logo">◆</span>
+    </div>
+
+    <div id="taskbar-pinned">
+      <div class="taskbar-icon" onclick="openApp('files')" title="Files">📁</div>
+      <div class="taskbar-icon" onclick="openApp('browser')" title="Browser">🌐</div>
+      <div class="taskbar-icon" onclick="openApp('terminal')" title="Terminal">⌨️</div>
+      <div class="taskbar-icon" onclick="openApp('music')" title="Music">🎵</div>
+    </div>
+
+    <div id="taskbar-windows"></div>
+
+    <div id="taskbar-tray">
+      <div id="quick-toggle" onclick="toggleQuickPanel()">☰</div>
+      <div id="taskbar-clock"></div>
+    </div>
+  </div>
+
+  <!-- Start menu -->
+  <div id="start-menu" class="hidden">
+    <div class="start-header">
+      <span>NovaOS</span>
+    </div>
+    <div class="start-grid">
+      <button onclick="openApp('files')">Files</button>
+      <button onclick="openApp('notes')">Notes</button>
+      <button onclick="openApp('browser')">Browser</button>
+      <button onclick="openApp('terminal')">Terminal</button>
+      <button onclick="openApp('music')">Music</button>
+      <button onclick="openApp('about')">About</button>
+      <button onclick="openApp('settings')">Settings</button>
+    </div>
+  </div>
+
+  <!-- Quick settings panel -->
+  <div id="quick-panel" class="hidden">
+    <h3>Quick Settings</h3>
+    <div class="qs-row">
+      <span>Theme</span>
+      <button onclick="setTheme('light')">Light</button>
+      <button onclick="setTheme('dark')">Dark</button>
+    </div>
+    <div class="qs-row">
+      <span>Wallpaper</span>
+      <button onclick="setWallpaper(0)">Aurora</button>
+      <button onclick="setWallpaper(1)">Purple</button>
+      <button onclick="setWallpaper(2)">Grid</button>
+    </div>
+  </div>
+
+  <!-- Notification area -->
+  <div id="notifications"></div>
 </div>
 
 <script src="os.js"></script>
