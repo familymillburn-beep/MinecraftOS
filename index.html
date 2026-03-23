@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebDesk OS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="boot">Starting WebDesk OS...</div>
+
+<div id="desktop" class="hidden">
+  <div id="taskbar">
+    <div id="start" onclick="toggleStartMenu()">Start</div>
+    <div id="taskbar-apps"></div>
+    <div id="clock"></div>
+  </div>
+
+  <div id="start-menu" class="hidden">
+    <h3>WebDesk OS</h3>
+    <button onclick="openApp('notes')">Notes</button>
+    <button onclick="openApp('files')">File Manager</button>
+    <button onclick="openApp('terminal')">Terminal</button>
+    <button onclick="openApp('about')">About</button>
+  </div>
+
+  <div id="windows"></div>
+</div>
+
+<script src="os.js"></script>
+</body>
+</html>
